@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="wrapper">
+        <div class="such_feld">
+            <input type="text" placeholder="Ort suchen" id="inp">
+            <button onclick="submit()"> > </button>
+        </div>
+
+        <div id="container" class="flex">
+            <div class="aktuell_wet_box">
+                <h2> Aktuelles Wetter in <u id="stadt"></u></h2>
+                <p><small id="time"></small></p>
+                <h1 >  <span id="temp"> </span></h1>
+                
+                <P id="text"></P>
+                <p>Humidity: <b id="pr"></b></p>
+                <p>Wind speed:<b id="km"></b></p>                
+            </div>
+            <div class="stund_box">
+                <table class="table table-striped flex">
+                    <tbody>
+                      <tr>
+                        <td id="tab_time"></td>
+                        <td id="tab_temp">22°C</td>
+                      </tr>
+                      <tr>
+                        <td>13:00</td>
+                        <td>22°C</td>
+                      </tr>
+                      <tr>
+                        <td>13:00</td>
+                        <td>22°C </td>
+                      </tr>
+                      
+                    </tbody>
+                    <tbody>
+                        <tr>
+                          <td>13:00</td>
+                          <td>22°C</td>
+                        </tr>
+                        <tr>
+                          <td>13:00</td>
+                          <td>22°C</td>
+                        </tr>
+                        <tr>
+                          <td>13:00</td>
+                          <td>22°C </td>
+                        </tr>
+                        
+                      </tbody>
+                  </table>
+                  
+            </div>
+
+        </div>
+
+        <div class="Woche_box">
+            <h3>7 Tage vorhersage</h3>
+            <div class="tag_box flex">
+                <div>
+                    <h4>Mit. 30</h4>
+                    <p>
+                        <img src="" alt=""> 
+                        <span>31°C</span>
+                    </p>
+                </div>
+
+
+                <div>
+                    <h4>Mit. 30</h4>
+                    <p>
+                        <img src="" alt=""> 
+                        <span>31°C</span>
+                    </p>
+                </div>
+                <div>
+                    <h4>Mit. 30</h4>
+                    <p>
+                        <img src="" alt=""> 
+                        <span>31°C</span>
+                    </p>
+                </div>
+                <div>
+                    <h4>Mit. 30</h4>
+                    <p>
+                        <img src="" alt=""> 
+                        <span>31°C</span>
+                    </p>
+                </div>
+                <div>
+                    <h4>Mit. 30</h4>
+                    <p>
+                        <img src="" alt=""> 
+                        <span>31°C</span>
+                    </p>
+                </div>
+                <div>
+                    <h4>Mit. 30</h4>
+                    <p>
+                        <img src="" alt=""> 
+                        <span>31°C</span>
+                    </p>
+                </div>
+                <div>
+                    <h4>Mit. 30</h4>
+                    <p>
+                        <img src="" alt=""> 
+                        <span>31°C</span>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
