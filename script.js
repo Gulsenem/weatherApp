@@ -8,6 +8,7 @@ let km = document.getElementById("km");
 let time = document.getElementById("time");
 let text = document.getElementById("text");
 
+
 function submit(){
 	if(inp.value == "")
 	{
@@ -29,7 +30,7 @@ function submit(){
 
 				container.style.display = "block";
 				stadt.innerHTML = sonuc.location.name;
-				time.innerHTML = sonuc.location.localtime;
+				time.innerHTML = sonuc.location.localtime.split(" ")[1];
 				//icon.src= 'sonuc.current.condition.icon';
 				text.innerHTML = sonuc.current.condition.text;
 				temp.innerHTML = sonuc.current.temp_c + " °C";
@@ -38,38 +39,42 @@ function submit(){
 			})
 			.catch(err => console.error(err));	
 			
+
+			const d = new Date();
+			let iso_d = d.toISOString().slice(0, 10); //date now und slice (2022-04-01)
+			console.log(iso_d);
+
+
+			const a = new Date();
+			let b = a.toISOString(a.setMonth(a.getMonth()+1));
+			let end_dt = b.slice(0, 10);
+			console.log(end_dt);
 			
-			
-			/*const options = {
-				method: 'GET',
-				headers: {
-					'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com',
-					'X-RapidAPI-Key': 'b6ea4c6179mshaee28b624113c0cp195f32jsna08ab544faa1'
-				}
-			};*/
-			
-			fetch('https://weatherapi-com.p.rapidapi.com/history.json?q=Bonn&dt=2022-03-30&lang=en&end_dt=2022-03-31', options)
+			fetch('https://weatherapi-com.p.rapidapi.com/history.json?q='+ inp.value + '&dt='+ iso_d +'&lang=de&' + end_dt, options)
 				.then(response => response.json())
 				.then(response => {
 
 					for(let i=0; i< response.forecast.forecastday[0].hour.length; i++)
 					{
-						let e = document.createElement("div");
-						e.innerHTML = response.forecast.forecastday[0].hour[i].time.split(" ")[1];
-						container.appendChild(e);
+						let sd = document.createElement("div");
+						document.getElementById("tr").appendChild(sd);
 
-						let f = document.createElement("div");
-						f.innerHTML = response.forecast.forecastday[0].hour[12].temp_c + "°C";
-						container.appendChild(f);
-					}
-					document.getElementById("tab_time").innerHTML = response.forecast.forecastday[0].hour[12].time.split(" ")[1];
-					document.getElementById("tab_temp").innerHTML = response.forecast.forecastday[0].hour[12].temp_c + "°C";
+						let td = document.createElement("h5");
+						td.innerHTML = response.forecast.forecastday[0].hour[i].time.split(" ")[1];
+
+						sd.appendChild(td);
+
+						let td_t = document.createElement("p");
+						td_t.innerHTML = response.forecast.forecastday[0].hour[i].temp_c + "°C";
+
+						sd.appendChild(td_t);
+
+			}
 				})
 				.catch(err => console.error(err));
 	
-			//https://weatherapi-com.p.rapidapi.com/history.json?q=Bonn&dt=2022-03-30&lang=en&end_dt=2022-03-31'
 	}
 
 		
 
-}
+} 
