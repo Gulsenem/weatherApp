@@ -1,5 +1,5 @@
 let stadt = document.getElementById("stadt");
-let container = document.getElementById("container");
+let wrapper = document.getElementById("wr");
 let temp = document.getElementById("temp");
 let inp = document.getElementById("inp");
 let icon = document.querySelector("img");
@@ -7,7 +7,7 @@ let pr = document.getElementById("pr");
 let km = document.getElementById("km");
 let time = document.getElementById("time");
 let text = document.getElementById("text");
-inp.value = "Bonn";
+
 
 function submit(){
 	if(inp.value == "")
@@ -17,6 +17,7 @@ function submit(){
 	
 	else 
 	{
+		wrapper.style.display= "block";
 		const options = {
 			method: 'GET',
 			headers: {
@@ -29,7 +30,6 @@ function submit(){
 			.then(response => response.json())
 			.then(sonuc => {
 
-				container.style.display = "flex";
 				stadt.innerHTML = sonuc.location.name;
 				time.innerHTML = sonuc.location.localtime.split(" ")[1];
 				//icon.src= 'sonuc.current.condition.icon';
@@ -77,7 +77,7 @@ function submit(){
 
 				// Forecast Rapid Api
 
-				fetch('https://weatherapi-com.p.rapidapi.com/forecast.json?q=Bonn&days=7', options)
+				fetch('https://weatherapi-com.p.rapidapi.com/forecast.json?q='+ inp.value + '&days=7', options)
 					.then(response => response.json())
 					.then(response => {
 						console.log(response);
