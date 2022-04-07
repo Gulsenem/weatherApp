@@ -7,7 +7,7 @@ let pr = document.getElementById("pr");
 let km = document.getElementById("km");
 let time = document.getElementById("time");
 let text = document.getElementById("text");
-
+inp.value = "Bonn";
 
 function submit(){
 	if(inp.value == "")
@@ -15,7 +15,8 @@ function submit(){
 		alert("Bitte ein Ort eingeben!");
 	}
 	
-	else {
+	else 
+	{
 		const options = {
 			method: 'GET',
 			headers: {
@@ -28,7 +29,7 @@ function submit(){
 			.then(response => response.json())
 			.then(sonuc => {
 
-				container.style.display = "block";
+				container.style.display = "flex";
 				stadt.innerHTML = sonuc.location.name;
 				time.innerHTML = sonuc.location.localtime.split(" ")[1];
 				//icon.src= 'sonuc.current.condition.icon';
@@ -56,22 +57,53 @@ function submit(){
 
 					for(let i=0; i< response.forecast.forecastday[0].hour.length; i++)
 					{
-						let sd = document.createElement("div");
-						document.getElementById("tr").appendChild(sd);
 
-						let td = document.createElement("h5");
-						td.innerHTML = response.forecast.forecastday[0].hour[i].time.split(" ")[1];
+						let tr = document.createElement("tr");						
+						document.getElementById("tb").appendChild(tr);
 
-						sd.appendChild(td);
+						let th = document.createElement("th");
+						th.innerHTML = response.forecast.forecastday[0].hour[i].time.split(" ")[1];
 
-						let td_t = document.createElement("p");
-						td_t.innerHTML = response.forecast.forecastday[0].hour[i].temp_c + "°C";
+						tr.appendChild(th);
 
-						sd.appendChild(td_t);
+						let td = document.createElement("td");
+						td.innerHTML = response.forecast.forecastday[0].hour[i].temp_c + "°C";
+						tr.appendChild(td);
 
 			}
 				})
 				.catch(err => console.error(err));
+
+
+				// Forecast Rapid Api
+
+				fetch('https://weatherapi-com.p.rapidapi.com/forecast.json?q=Bonn&days=7', options)
+					.then(response => response.json())
+					.then(response => {
+						console.log(response);
+						console.log(response.forecast.forecastday[1].date);
+						for(let f=1; f<response.forecast.forecastday.length; f++)
+						{
+							let div1 = document.createElement("div");
+							document.getElementById("tag_box").appendChild(div1);
+
+							let h5 =  document.createElement("h5");
+							h5.innerHTML = response.forecast.forecastday[f].date;
+							div1.appendChild(h5);
+
+							let p = document.createElement("p");
+							div1.appendChild(p);
+							
+							let div2 = document.createElement("div");
+							div2.innerHTML = "Max: " + response.forecast.forecastday[f].day.maxtemp_c + " °C";
+							p.appendChild(div2);
+							let div3 = document.createElement("div");					
+							div3.innerHTML ="Min: " + response.forecast.forecastday[f].day.mintemp_c + " °C";	
+							p.appendChild(div3);	
+						}
+
+					})
+					.catch(err => console.error(err));
 	
 	}
 
